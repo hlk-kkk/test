@@ -1,0 +1,44 @@
+# 全局配置
+platform: "xhs"
+keywords:
+  - "deepseek"
+  - "chatgpt"
+crawlerType: "search"
+saveDataOption: "db"
+accountPoolSaveType: "mysql"
+startPage: 1
+crawlerMaxNotesCount: 20
+maxConcurrencyNum: 1
+enableGetComments: true
+enableGetSubComments: false
+crawlerTimeSleep: 1
+debugRequest: false
+
+# 指定笔记URL列表(需携带xsec_token和xsec_source参数)
+# specifiedNoteURLs:
+#   - "https://www.xiaohongshu.com/explore/66fad51c000000001b0224b8?xsec_token=AB3rO-xxx&xsec_source=pc_search"
+
+# 指定创作者主页URL列表(需携带xsec_token和xsec_source参数)
+# specifiedCreatorURLs:
+#   - "https://www.xiaohongshu.com/user/profile/5f58bd990000000001003753?xsec_token=ABeQXQ2xxx&xsec_source=pc_search"
+
+# 数据库配置
+database:
+  relationDbHost: "localhost"
+  relationDbPort: 3306
+  relationDbUser: "root"
+  relationDbPwd: ""
+  relationDbName: "media_crawler_pro"
+  redisDbHost: "127.0.0.1"
+  redisDbPort: 6379
+  redisDbPwd: ""
+  redisDbNum: 0
+
+# IP代理配置
+ProxyConfig:
+  enableIpProxy: "false"
+
+# 签名服务配置
+signSrvConfig:
+  signSrvHost: "127.0.0.1"
+  signSrvPort: 8989

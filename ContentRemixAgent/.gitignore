@@ -1,0 +1,8 @@
+.playwright-mcp/
+.omx/
+
+# Docker
+.env
+temp/
+assets/
+!backend/assets/

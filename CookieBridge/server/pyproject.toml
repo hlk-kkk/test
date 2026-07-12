@@ -1,0 +1,14 @@
+[project]
+name = "cookiebridge-server"
+version = "0.1.0"
+description = "CookieBridge Server - automatic cookie extraction bridge"
+readme = "../README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic==2.10.4",
+    "tornado==6.1",
+]
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true

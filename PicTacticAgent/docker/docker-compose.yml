@@ -1,0 +1,29 @@
+services:
+  nginx:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.frontend
+    ports:
+      - "${NGINX_PORT:-80}:80"
+    volumes:
+      - ./data/storage/images:/app/storage/images:ro
+      - ./data/storage/videos:/app/storage/videos:ro
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    expose:
+      - "8019"
+    env_file:
+      - ../.env.production
+    volumes:
+      - ./data/storage/images:/app/storage/images
+      - ./data/storage/videos:/app/storage/videos
+      - ./data/db:/app/data
+    restart: unless-stopped
+

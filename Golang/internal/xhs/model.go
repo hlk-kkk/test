@@ -1,0 +1,89 @@
+// Copyright (c) 2025 relakkes@gmail.com
+//
+// This file is part of MediaCrawlerPro-Golang project.
+// Repository: https://github.com/MediaCrawlerPro/MediaCrawlerPro-Golang/blob/main/internal/xhs/model.go
+// GitHub: https://github.com/NanmiCoder
+// Licensed under NON-COMMERCIAL LEARNING LICENSE 1.1
+//
+// 声明：本代码仅供学习和研究目的使用。使用者应遵守以下原则：
+// 1. 不得用于任何商业用途。
+// 2. 使用时应遵守目标平台的使用条款和robots.txt规则。
+// 3. 不得进行大规模爬取或对平台造成运营干扰。
+// 4. 应合理控制请求频率，避免给目标平台带来不必要的负担。
+// 5. 不得用于任何非法或不当的用途。
+//
+// 详细许可条款请参阅项目根目录下的LICENSE文件。
+// 使用本代码即表示您同意遵守上述原则和LICENSE中的所有条款。
+
+// internal/xhs/model.go
+package xhs
+
+// Note 对应 xhs_note 表
+type Note struct {
+	ID             int64  `gorm:"primaryKey;autoIncrement;column:id"`
+	UserID         string `gorm:"column:user_id;not null"`
+	Nickname       string `gorm:"column:nickname"`
+	Avatar         string `gorm:"column:avatar"`
+	IPLocation     string `gorm:"column:ip_location"`
+	AddTs          int64  `gorm:"column:add_ts;not null"`
+	LastModifyTs   int64  `gorm:"column:last_modify_ts;not null"`
+	NoteID         string `gorm:"column:note_id;not null;index"`
+	Type           string `gorm:"column:type"`
+	Title          string `gorm:"column:title"`
+	Desc           string `gorm:"column:desc;type:longtext"`
+	VideoURL       string `gorm:"column:video_url;type:longtext"`
+	Time           int64  `gorm:"column:time;not null;index"`
+	LastUpdateTime int64  `gorm:"column:last_update_time;not null"`
+	LikedCount     string `gorm:"column:liked_count"`
+	CollectedCount string `gorm:"column:collected_count"`
+	CommentCount   string `gorm:"column:comment_count"`
+	ShareCount     string `gorm:"column:share_count"`
+	ImageList      string `gorm:"column:image_list;type:longtext"`
+	TagList        string `gorm:"column:tag_list;type:longtext"`
+	NoteURL        string `gorm:"column:note_url"`
+	SourceKeyword  string `gorm:"column:source_keyword"`
+}
+
+func (Note) TableName() string { return "xhs_note" }
+
+// NoteComment 对应 xhs_note_comment 表
+type NoteComment struct {
+	ID              int64  `gorm:"primaryKey;autoIncrement;column:id"`
+	UserID          string `gorm:"column:user_id;not null"`
+	Nickname        string `gorm:"column:nickname"`
+	Avatar          string `gorm:"column:avatar"`
+	IPLocation      string `gorm:"column:ip_location"`
+	AddTs           int64  `gorm:"column:add_ts;not null"`
+	LastModifyTs    int64  `gorm:"column:last_modify_ts;not null"`
+	CommentID       string `gorm:"column:comment_id;not null;index"`
+	CreateTime      int64  `gorm:"column:create_time;not null;index"`
+	NoteID          string `gorm:"column:note_id;not null"`
+	Content         string `gorm:"column:content;type:longtext;not null"`
+	SubCommentCount string `gorm:"column:sub_comment_count;not null"`
+	Pictures        string `gorm:"column:pictures;type:varchar(512)"`
+	ParentCommentID string `gorm:"column:parent_comment_id"`
+	LikeCount       string `gorm:"column:like_count;not null;default:'0'"`
+	NoteURL         string `gorm:"column:note_url;not null;default:''"`
+	TargetCommentID string `gorm:"column:target_comment_id"`
+}
+
+func (NoteComment) TableName() string { return "xhs_note_comment" }
+
+// Creator 对应 xhs_creator 表
+type Creator struct {
+	ID           int64  `gorm:"primaryKey;autoIncrement;column:id"`
+	UserID       string `gorm:"column:user_id;not null"`
+	Nickname     string `gorm:"column:nickname"`
+	Avatar       string `gorm:"column:avatar"`
+	IPLocation   string `gorm:"column:ip_location"`
+	AddTs        int64  `gorm:"column:add_ts;not null"`
+	LastModifyTs int64  `gorm:"column:last_modify_ts;not null"`
+	Desc         string `gorm:"column:desc;type:longtext"`
+	Gender       string `gorm:"column:gender;type:varchar(2)"`
+	Follows      string `gorm:"column:follows"`
+	Fans         string `gorm:"column:fans"`
+	Interaction  string `gorm:"column:interaction"`
+	TagList      string `gorm:"column:tag_list;type:longtext"`
+}
+
+func (Creator) TableName() string { return "xhs_creator" }

@@ -1,0 +1,1 @@
+"""PicTactic CLI module."""

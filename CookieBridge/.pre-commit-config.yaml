@@ -1,0 +1,37 @@
+repos:
+  - repo: local
+    hooks:
+      # Check file headers (Python + JS)
+      - id: check-file-headers
+        name: Check copyright headers
+        entry: python pkg/file_header_manager.py --check
+        language: system
+        types_or: [python, javascript]
+        pass_filenames: true
+        stages: [pre-commit]
+
+      # Auto-fix file headers (Python + JS)
+      - id: add-file-headers
+        name: Add copyright headers
+        entry: python pkg/file_header_manager.py
+        language: system
+        types_or: [python, javascript]
+        pass_filenames: true
+        stages: [pre-commit]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: ^(.*\.md|.*\.txt)$
+      - id: end-of-file-fixer
+        exclude: ^(.*\.md|.*\.txt)$
+      - id: check-yaml
+      - id: check-added-large-files
+        args: ['--maxkb=10240']
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: mixed-line-ending
+
+default_language_version:
+  python: python3

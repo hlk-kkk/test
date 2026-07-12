@@ -1,0 +1,17 @@
+services:
+  sign-srv:
+    build:
+      context: ../MediaCrawlerPro-SignSrv
+    ports:
+      - "8989:8989"
+    environment:
+      - SIGN_TYPE=javascript
+
+  download-server:
+    build:
+      context: ./DownloadServer
+    ports:
+      - "8205:8205"
+    depends_on:
+      sign-srv:
+        condition: service_healthy
